@@ -24,8 +24,7 @@ public class VendingMachineTest {
 	public void testAddItem() {
 		VendingMachineItem vItem = new VendingMachineItem("RaspberryCandy", 2.0f);
 		vMachine.addItem(vItem,VendingMachine.D_CODE);
-		assertEquals(vMachine.getItem(VendingMachine.D_CODE).getName(), vItem.getName());
-		assertEquals(vMachine.getItem(VendingMachine.D_CODE).getPrice(), vItem.getPrice(), 0.001);
+		assertEquals(vMachine.getItem(VendingMachine.D_CODE), vItem);
 	}
 
 	/*Test adding the item to a bad slot*/
@@ -61,9 +60,7 @@ public class VendingMachineTest {
 	public void testRemoveItem() {
 		VendingMachineItem vItem = new VendingMachineItem("PopcornChicken", 5.0f);
 		vMachine.addItem(vItem, VendingMachine.B_CODE);
-		VendingMachineItem removedItem = vMachine.removeItem(VendingMachine.B_CODE);
-		assertEquals(removedItem.getName(), vItem.getName());
-		assertEquals(removedItem.getPrice(), vItem.getPrice(), 0.001);
+		assertEquals(vMachine.removeItem(VendingMachine.B_CODE), vItem);
 		assertEquals(vMachine.getItem(VendingMachine.B_CODE),null);
 	}
 
@@ -71,7 +68,7 @@ public class VendingMachineTest {
 	@Test
 	public void testRemoveItemBad() {
 		try{
-			VendingMachineItem removedItem = vMachine.removeItem(VendingMachine.B_CODE);
+			vMachine.removeItem(VendingMachine.B_CODE);
 			fail("Exception not caught when trying to remove bad item");
 		}
 		catch(VendingMachineException e) {
@@ -125,9 +122,9 @@ public class VendingMachineTest {
 		assertEquals(vMachine.getItem(VendingMachine.A_CODE), vItem);
 	}
 
-	/*Test to ensure we can't purchase an item from an empty slot*/
+	/*Test to ensure we can't purchase an item from an empty slot.*/
 	@Test
-	public void testEmptySlotPurcahase() {
+	public void testEmptySlotPurchase() {
 		assertEquals(vMachine.getItem(VendingMachine.A_CODE), null);
 		assertFalse(vMachine.makePurchase(VendingMachine.A_CODE));	
 	}
