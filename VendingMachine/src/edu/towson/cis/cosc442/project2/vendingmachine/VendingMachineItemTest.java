@@ -17,7 +17,7 @@ public class VendingMachineItemTest {
 
 	/**
 	 * @throws java.lang.Exception
-	 * I liked naming every candy seperately so I didn't use setup to create the same kinds of vending machine items
+	 * I liked naming every test item seperately so I didn't use setup to create the same kinds of vending machine items
 	 * to test. 
 	 */
 	@Before
